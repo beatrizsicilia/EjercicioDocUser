@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+        </div>
+        <!-- TABLE CONSTRUCTION-->
+        <table id='table'>
+            <!-- HEADING FORMATION -->
+            <tr>
+                <th>UserId</th>
+                <th>User</th>
+                <th>Comment</th>
+                <th>Doc Id</th>
+                <th>Doc</th>
+            </tr>
+    </body>
+
+    <script>
+        let cogerDatos = async () => {
+            let request = await fetch("/api/v1/users/docs");
+            if (request.status == 200) {
+                const data = await request.json();
+                var table = document.getElementById("table");
+                for (i = 0; i < data.length; i++) {
+                    var row = table.insertRow();
+                    for (var clave in data[i]){
+                        var cell = row.insertCell();
+                        cell.innerHTML= data[i][clave];
+                    }
+            }   
+        }
+
+        };
+        cogerDatos();
+
+    </script>
+</html>
